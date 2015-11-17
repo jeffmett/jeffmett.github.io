@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+<meta charset="utf-8">
+<title>whatever</title>
+<style>
+@media (min-width: 200px) and (max-width: 1000px) { }
+#stuff {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+input[type='text'] {
+	padding: 5px;
+	border-radius: 3px;
+	width: 250px;
+	margin: 5px;
+	display: block;
+	border: 1px solid #ccc;
+	outline: none;
+}
+label {
+	opacity: 0;
+	transition: 0.2s all;
+	padding-left: 5px;
+}
+h1 {
+	font-family: cursive;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div id="stuff">
+	<h1></h1>
+<form>
+	<label></label>
+	<input type="text"/>
+	<label></label>
+	<input type="text"/>
+	<label></label>
+	<input type="text"/>
+</form>
+</div>
+<script>
+	$('input[type="text"]').on('focus', function() {
+		$(this).css('border-color', '#ccc');
+		$(this).prev().css('opacity', 1)
+		.css('color', '#000')
+		.html('don\'t leave it blank' );
+	});
+	$('input[type="text"]').on('blur', function() {
+		if($(this).val()) {
+			$(this).prev('label').css('opacity', 0);
+		} else {
+			$(this).css('border-color', '#b66');
+			$(this).prev()
+			.css('color', '#b66')
+			.attr('placeholder', 'this is required!')
+			.html('I said don\'t leave it blank');
+		}
+	});
+</script>
+</body>
+</html>
